@@ -1,0 +1,51 @@
+# OneSTools.LogCfg
+
+Библиотека для программного создания файла конфигурации технологического журнала.
+
+Пример использования:
+```c#
+new LogCfgBuilder()
+.UseStandartNamespace()
+.Config(config =>
+{
+    config.Dump(dump =>
+    {
+        dump.Location = @"C:\DumpFolder";
+        dump.Create = true;
+        dump.Type = 3;
+    });
+
+    config.DefaultLog(@"C:\DefaultLogFolder", 8);
+
+    config.Log(@"C:\LogFolder", 8, log =>
+    {
+        log.ForEvent("TLOCK");
+        log.ForEvent("DBMSSQL", ev => 
+            ev.Equal("p:processName", "TestDatabase"));
+
+        log.CollectProperty("sql");
+        log.CollectProperty("dbpid", prop =>
+        {
+            prop.Event("DBMSSQL", ev =>
+            {
+                ev.Equal("Usr", "АкпаевЕА");
+            });
+        });
+    });
+
+    config.Mem();
+    config.PlanSql();
+    config.Ftextupd(true);
+    config.Query(true);
+    config.Dbmslocks();
+    config.Scriptcircrefs();
+    config.System("Debug", "C", "C");
+    config.Leaks(true, l =>
+    {
+        l.PointCall("server");
+        l.PointProc("МодульУправляемогоПриложения");
+        l.PointOnOff(@"ОбщийМодуль.ТестНаСервере/0", @"ОбщийМодуль.ТестНаСервере/10");
+    });
+})
+.Build();
+```
