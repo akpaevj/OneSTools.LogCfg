@@ -20,12 +20,12 @@ new LogCfgBuilder()
 
     config.Log(@"C:\LogFolder", 8, log =>
     {
-        log.ForEvent("TLOCK");
-        log.ForEvent("DBMSSQL", ev => 
+        log.Event("TLOCK");
+        log.Event("DBMSSQL", ev => 
             ev.Equal("p:processName", "TestDatabase"));
 
-        log.CollectProperty("sql");
-        log.CollectProperty("dbpid", prop =>
+        log.Property("sql");
+        log.Property("dbpid", prop =>
         {
             prop.Event("DBMSSQL", ev =>
             {
