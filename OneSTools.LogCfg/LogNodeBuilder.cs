@@ -14,18 +14,18 @@ namespace OneSTools.LogCfg
         /// </summary>
         /// <param name="eventName"></param>
         /// <returns></returns>
-        public LogNodeBuilder ForEvent(string eventName)
+        public LogNodeBuilder Event(string eventName)
         {
-            return ForEvent(eventName, null);
+            return Event(eventName, null);
         }
         /// <summary>
         /// Adds "Event" node
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public LogNodeBuilder ForEvent(Action<EventNodeBuilder> builder)
+        public LogNodeBuilder Event(Action<EventNodeBuilder> builder)
         {
-            return ForEvent(null, builder);
+            return Event(null, builder);
         }
         /// <summary>
         /// Adds "Event" node
@@ -33,7 +33,7 @@ namespace OneSTools.LogCfg
         /// <param name="eventName"></param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public LogNodeBuilder ForEvent(string eventName, Action<EventNodeBuilder> builder)
+        public LogNodeBuilder Event(string eventName, Action<EventNodeBuilder> builder)
         {
             var node = new EventNodeBuilder();
             builder?.Invoke(node);
@@ -49,9 +49,9 @@ namespace OneSTools.LogCfg
         /// </summary>
         /// <param name="name">Property name</param>
         /// <returns></returns>
-        public LogNodeBuilder CollectProperty(string name)
+        public LogNodeBuilder Property(string name)
         {
-            return CollectProperty(name, null);
+            return Property(name, null);
         }
         /// <summary>
         /// Adds "Property" node
@@ -59,7 +59,7 @@ namespace OneSTools.LogCfg
         /// <param name="name">Property name</param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public LogNodeBuilder CollectProperty(string name, Action<PropertyNodeBuilder> builder)
+        public LogNodeBuilder Property(string name, Action<PropertyNodeBuilder> builder)
         {
             var node = new PropertyNodeBuilder(name);
             builder?.Invoke(node);
