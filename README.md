@@ -1,5 +1,5 @@
 # OneSTools.LogCfg
-
+[![Nuget](https://img.shields.io/nuget/v/OneSTools.LogCfg)](https://www.nuget.org/packages/OneSTools.LogCfg)<br>
 Библиотека для программного создания файла конфигурации технологического журнала.
 Реализована с применением паттерна Fluent Interface.
 
